@@ -1,19 +1,15 @@
-// IMCOMPDefiniendoNHilos.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
 
-// Incluímos las librerías.
+// IncluÃ­mos las librerÃ­as.
 
 #include <iostream>
 #include <omp.h>
 
-//Definimos los valores a utilizar para esta práctica
+//Definimos los valores a utilizar para esta prÃ¡ctica
 
 #define N 1000 //Cantidad de elementos a manejar en los arreglos
-#define chunk 100 //Tamaño que tendrán los arreglos para que cada hilo creado se encargue de esta cantidad de elementos
-#define mostrar 10 //Permitirá manejar la cantidad de datos a imprimir
+#define chunk 100 //TamaÃ±o que tendrÃ¡n los arreglos para que cada hilo creado se encargue de esta cantidad de elementos
+#define mostrar 10 //PermitirÃ¡ manejar la cantidad de datos a imprimir
 
-using namespace std;
-int tid;
 
 void imprimeArreglo(float* d);
 
@@ -28,19 +24,19 @@ int main()
 
 	for (i = 0; i < N; i++)
 	{
-		//Asignamos una fórmula para calcular a y b
+		//Asignamos una fÃ³rmula para calcular a y b
 		a[i] = i * 80;
 		b[i] = (i + 10) * 3.7;
 	}
 	int pedazos = chunk;
 
-	//paralelizamos la iteración 
+	//paralelizamos la iteraciÃ³n 
 
 #pragma omp parallel for \
 	shared (a, b, c, pedazos) private (i) \
 	schedule(static, pedazos)
 	
-	//calculamos C dentro de la paralelización
+	//calculamos C dentro de la paralelizaciÃ³n
 	for (i = 0; i < N; i++)
 		c[i] = a[i] + b[i];
 
